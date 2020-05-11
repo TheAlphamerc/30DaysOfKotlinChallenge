@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">30DaysOfKotlinChallenge</string>
+    <string name="app_name">Dice Roller</string>
+    <string name="roll_label">Roll</string>
+    <string name="countUp_label">Count Up</string>
 </resources>
