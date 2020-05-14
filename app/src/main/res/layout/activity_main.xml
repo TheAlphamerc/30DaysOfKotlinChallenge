@@ -1,36 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center_vertical"
-    tools:context=".MainActivity" >
+    android:paddingLeft="@dimen/layout_margin"
+    android:paddingRight="@dimen/layout_margin"
+    tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/dice_image"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/star_image"
+        style="@style/NameStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/empty_dice"
-        tools:src="@drawable/dice_1"/>
-    <ImageView
-        android:id="@+id/dice_image2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/empty_dice"
-        tools:src="@drawable/dice_1"/>
-    <Button
-        android:id="@+id/roll_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/roll_label" />
+        android:text="@string/name"
+        android:textAlignment="center"
+        app:fontFamily="@font/roboto" />
+
+    <ScrollView
+        android:id="@+id/bio_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin"
+                android:contentDescription="@string/start_image_description"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
+
+            <TextView
+                android:id="@+id/bio_text"
+                style="@style/NameStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:text="@string/bio_text" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
 </LinearLayout>
