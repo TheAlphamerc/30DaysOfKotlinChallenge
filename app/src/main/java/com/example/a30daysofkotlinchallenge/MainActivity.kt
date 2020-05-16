@@ -4,61 +4,68 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.a30daysofkotlinchallenge.databinding.ActivityMainBinding
+import androidx.databinding.DataBindingUtil as DataBindingUtil1
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var editText: EditText
-    lateinit var doneButton: Button
-    lateinit var nicknameTextView: TextView
+
+    private lateinit var binding: ActivityMainBinding
+    private var myName: MyName = MyName("Aleks Heacky")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        doneButton = findViewById<Button>(R.id.done_button)
-        doneButton.setOnClickListener { addNickname(it) }
 
-        editText = findViewById<EditText>(R.id.nickname_edit)
-        nicknameTextView = findViewById<TextView>(R.id.nickname_text)
-        nicknameTextView.setOnClickListener {
-            updateNickname(it)
+        binding = DataBindingUtil1.setContentView(this, R.layout.activity_main)
+
+        binding.myName = myName
+
+        binding.doneButton.setOnClickListener { addNickname() }
+
+        binding.nicknameText.setOnClickListener {
+            updateNickname()
         }
 
     }
 
-    private fun addNickname(view: View) {
+    private fun addNickname() {
+        binding.apply {
+            myName?.nickname = binding.nicknameEdit.text.toString()
 
-        nicknameTextView.text = editText.text
+            // Disappear Text field
+            binding.nicknameEdit.visibility = View.GONE
 
-        // Disappear Text field
-        editText.visibility = View.GONE
+            // Show nickname button
+            binding.nicknameText.visibility = View.VISIBLE
 
-        // Show nickname button
-        nicknameTextView.visibility = View.VISIBLE
+            // Disaapear button
+            binding.doneButton.visibility = View.GONE
 
-        // Disaapear button
-        view.visibility = View.GONE
+            invalidateAll()
+        }
+
+
 
         val inputMethodManager =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.doneButton.windowToken, 0)
+
+
     }
 
-    private fun updateNickname(view: View) {
+    private fun updateNickname() {
 
-        editText.visibility = View.VISIBLE
-        doneButton.visibility = View.VISIBLE
-        nicknameTextView.visibility = View.GONE
+        binding.nicknameEdit.visibility = View.VISIBLE
+        binding.doneButton.visibility = View.VISIBLE
+        binding.nicknameText.visibility = View.GONE
 
         // Set the focus to the edit text.
-        editText.requestFocus()
+        binding.nicknameEdit.requestFocus()
 
         // Show the keyboard.
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(editText, 0)
+        imm.showSoftInput(binding.nicknameEdit, 0)
 
     }
 }
