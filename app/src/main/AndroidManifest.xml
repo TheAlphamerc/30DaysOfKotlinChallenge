@@ -3,6 +3,7 @@
     package="com.example.a30daysofkotlinchallenge">
 
     <application
+        android:name=".ClickerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
