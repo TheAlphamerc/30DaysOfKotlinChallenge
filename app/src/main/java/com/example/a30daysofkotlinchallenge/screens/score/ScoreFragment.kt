@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.a30daysofkotlinchallenge.R
 import com.example.a30daysofkotlinchallenge.databinding.ScoreFragmentBinding
@@ -52,7 +53,10 @@ class ScoreFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ScoreViewModel::class.java)
 
-        binding.scoreText.text = viewModel.score.toString()
+        // Add observer for score
+        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+            binding.scoreText.text = newScore.toString()
+        })
 
         return binding.root
     }
