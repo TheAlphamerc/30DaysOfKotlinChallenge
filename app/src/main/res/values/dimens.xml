@@ -15,20 +15,8 @@
   -->
 
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <!-- Basic styling for the buttons. -->
-    <style name="SleepButtons" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:textColor">@color/white_text_color</item>
-        <item name="colorAccent">@color/green_color</item>
-        <item name="colorControlHighlight">@color/green_color</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
+    <dimen name="margin">16dp</dimen>
+    <dimen name="icon_size">64dp</dimen>
+    <dimen name="title_text_size">20sp</dimen>
+    <dimen name="triple_margin">48dp</dimen>
 </resources>
