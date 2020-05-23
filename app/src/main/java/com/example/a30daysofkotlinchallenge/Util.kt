@@ -21,6 +21,8 @@ import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.a30daysofkotlinchallenge.database.SleepNight
 import java.text.SimpleDateFormat
 
@@ -87,19 +89,6 @@ fun convertLongToDateString(systemTime: Long): String {
         .format(systemTime).toString()
 }
 
-/**
- * Takes a list of SleepNights and converts and formats it into one string for display.
- *
- * For display in a TextView, we have to supply one string, and styles are per TextView, not
- * applicable per word. So, we build a formatted string using HTML. This is handy, but we will
- * learn a better way of displaying this data in a future lesson.
- *
- * @param   nights - List of all SleepNights in the database.
- * @param   resources - Resources object for all the resources defined for our app.
- *
- * @return  Spanned - An interface for text that has formatting attached to it.
- *           See: https://developer.android.com/reference/android/text/Spanned
- */
 fun formatNights(nights: List<SleepNight>, resources: Resources): Spanned {
     val sb = StringBuilder()
     sb.apply {
@@ -133,4 +122,6 @@ fun formatNights(nights: List<SleepNight>, resources: Resources): Spanned {
         return Html.fromHtml(sb.toString())
     }
 }
+
+class TextItemViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
