@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.a30daysofkotlinchallenge.R
 import com.example.a30daysofkotlinchallenge.database.SleepDatabase
 import com.example.a30daysofkotlinchallenge.databinding.FragmentSleepTrackerBinding
@@ -106,6 +107,9 @@ class SleepTrackerFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
+
+        val manager = GridLayoutManager(activity, 3, GridLayoutManager.HORIZONTAL, false)
+        binding.sleepList.layoutManager = manager
         return binding.root
     }
 }

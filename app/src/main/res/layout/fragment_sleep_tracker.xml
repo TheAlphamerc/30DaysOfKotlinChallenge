@@ -54,7 +54,6 @@
             android:layout_width="409dp"
             android:layout_height="601dp"
             android:layout_marginTop="2dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/clear_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
