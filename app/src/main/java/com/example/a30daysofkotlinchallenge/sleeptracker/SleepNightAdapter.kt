@@ -6,24 +6,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a30daysofkotlinchallenge.R
 import com.example.a30daysofkotlinchallenge.convertDurationToFormatted
 import com.example.a30daysofkotlinchallenge.convertNumericQualityToString
 import com.example.a30daysofkotlinchallenge.database.SleepNight
 
-class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
+class SleepNightAdapter :
+    ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) { // RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
-    var data = listOf<SleepNight>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
