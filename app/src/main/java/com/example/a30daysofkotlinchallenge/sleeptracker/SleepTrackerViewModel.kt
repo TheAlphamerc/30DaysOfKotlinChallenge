@@ -17,6 +17,7 @@
 package com.example.a30daysofkotlinchallenge.sleeptracker
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -117,6 +118,10 @@ class SleepTrackerViewModel(
     val navigateToSleepQuality: LiveData<SleepNight>
         get() = _navigateToSleepQuality
 
+
+    private val _navigateToSleepDetail = MutableLiveData<Long>()
+    val navigateToSleepDetail
+        get() = _navigateToSleepDetail
     /**
      * Call this immediately after calling `show()` on a toast.
      *
@@ -233,12 +238,15 @@ class SleepTrackerViewModel(
         }
     }
 
-    /**
-     * Called when the ViewModel is dismantled.
-     * At this point, we want to cancel all coroutines;
-     * otherwise we end up with processes that have nowhere to return to
-     * using memory and resources.
-     */
+    fun onSleepNightClicked(id: Long) {
+        Log.d("Sleep tracker ViewModel ", "onSleepNightClicked invoked")
+        _navigateToSleepDetail.value = id
+    }
+
+    fun onSleepDetailNavigated() {
+        _navigateToSleepDetail.value = null
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
