@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a30daysofkotlinchallenge.database.SleepNight
 import com.example.a30daysofkotlinchallenge.databinding.ListItemSleepNightBinding
 
-class SleepNightAdapter :
+class SleepNightAdapter(val clickListener: SleepNightListener) :
     ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) { // RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item!!, clickListener)
     }
 
 
@@ -27,9 +27,11 @@ class SleepNightAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            item: SleepNight
+            item: SleepNight,
+            clickListener: SleepNightListener
         ) {
             binding.sleep = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -55,4 +57,8 @@ class SleepNightDiffCallback : DiffUtil.ItemCallback<SleepNight>() {
         return oldItem == newItem
     }
 
+}
+
+class SleepNightListener(val clickListener: (sleepId: Long) -> Unit) {
+    fun onClick(night: SleepNight) = clickListener(night.nightId)
 }

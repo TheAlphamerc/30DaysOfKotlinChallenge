@@ -8,9 +8,14 @@
         <variable
             name="sleep"
             type="com.example.a30daysofkotlinchallenge.database.SleepNight" />
+
+        <variable
+            name="clickListener"
+            type="com.example.a30daysofkotlinchallenge.sleeptracker.SleepNightListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{() -> clickListener.onClick(sleep)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
