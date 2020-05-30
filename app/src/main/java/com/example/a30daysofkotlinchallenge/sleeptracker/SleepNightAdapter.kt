@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a30daysofkotlinchallenge.R
 import com.example.a30daysofkotlinchallenge.database.SleepNight
 import com.example.a30daysofkotlinchallenge.databinding.ListItemSleepNightBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private val ITEM_VIEW_TYPE_HEADER = 0
 private val ITEM_VIEW_TYPE_ITEM = 1
@@ -17,6 +21,7 @@ private val ITEM_VIEW_TYPE_ITEM = 1
 class SleepNightAdapter(val clickListener: SleepNightListener) :
     ListAdapter<DataItem, RecyclerView.ViewHolder>(SleepNightDiffCallback()) { // RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
@@ -38,11 +43,17 @@ class SleepNightAdapter(val clickListener: SleepNightListener) :
     }
 
     fun addHeaderAndSubmitList(list: List<SleepNight>?) {
-        val items = when (list) {
-            null -> listOf(DataItem.Header)
-            else -> listOf(DataItem.Header) + list.map { DataItem.SleepNightItem(it) }
+        adapterScope.launch {
+            val items = when (list) {
+                null -> listOf(DataItem.Header)
+                else -> listOf(DataItem.Header) + list.map { DataItem.SleepNightItem(it) }
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
         }
-        submitList(items)
+
+
     }
 
     override fun getItemViewType(position: Int): Int {
