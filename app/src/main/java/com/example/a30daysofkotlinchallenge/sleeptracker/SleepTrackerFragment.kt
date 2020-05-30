@@ -121,11 +121,12 @@ class SleepTrackerFragment : Fragment() {
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
 
-                adapter.submitList(it)
+//                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
 
-        val manager = GridLayoutManager(activity, 3, GridLayoutManager.HORIZONTAL, false)
+        val manager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
         binding.sleepList.layoutManager = manager
         return binding.root
     }

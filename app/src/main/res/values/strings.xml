@@ -57,5 +57,6 @@
     <string name="hours_length">%d hours on %s</string>
     <string name="seconds_length">%d seconds on %s</string>
     <string name="close">Close</string>
+    <string name="header_text">Sleep Result</string>
 
 </resources>
